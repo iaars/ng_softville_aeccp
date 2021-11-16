@@ -40,4 +40,4 @@ jobs:
         run: npm run build
 
       - name: Ejecutar pruebas
-        run: npm test
+        run: npm test -- --configuration=ci
