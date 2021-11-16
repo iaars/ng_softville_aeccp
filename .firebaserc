@@ -1,0 +1,14 @@
+{
+  "targets": {
+    "softville-aeccp-db": {
+      "hosting": {
+        "softville-aeccp": [
+          "softville-aeccp-db"
+        ]
+      }
+    }
+  },
+  "projects": {
+    "default": "softville-aeccp-db"
+  }
+}
