@@ -1,0 +1,7 @@
+<h1 mat-dialog-title>{{ title }}</h1>
+<div mat-dialog-content>
+  <p>{{ description }}</p>
+</div>
+<div mat-dialog-actions [align]="this.buttonsPosition">
+  <buttons-component [buttons]="this.buttons" [modalRef]="this.modalRef"> </buttons-component>
+</div>

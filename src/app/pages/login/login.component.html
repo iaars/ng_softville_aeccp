@@ -1,1 +1,34 @@
-<p>login works!</p>
+<div id="logo-container">
+  <mat-card>
+    <mat-card-title>Iniciar sesión</mat-card-title>
+    <mat-card-content>
+      <form [formGroup]="form" (ngSubmit)="onSubmit()">
+        <mat-form-field appearance="fill">
+          <mat-label>Usuario</mat-label>
+          <input matInput formControlName="email" required />
+        </mat-form-field>
+
+        <mat-form-field appearance="fill">
+          <mat-label>Contraseña</mat-label>
+          <input matInput [type]="hide ? 'password' : 'text'" formControlName="password" required />
+          <button
+            mat-icon-button
+            matSuffix
+            type="button"
+            (click)="hide = !hide"
+            [attr.aria-label]="'Ocultar contraseña'"
+            [attr.aria-pressed]="hide"
+          >
+            <mat-icon>{{ hide ? 'visibility_off' : 'visibility' }}</mat-icon>
+          </button>
+        </mat-form-field>
+
+        <div class="submitButton">
+          <button mat-raised-button color="primary" type="submit" [disabled]="!form.valid">
+            Iniciar sesión
+          </button>
+        </div>
+      </form>
+    </mat-card-content>
+  </mat-card>
+</div>

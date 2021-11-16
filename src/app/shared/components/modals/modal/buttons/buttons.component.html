@@ -1,0 +1,10 @@
+<button
+  mat-raised-button
+  [color]="button.color"
+  *ngFor="let button of buttons"
+  (click)="button.action(this.modalRef)"
+  [disabled]="button.disabled"
+  [type]="button.type"
+>
+  {{ button.label }}
+</button>
