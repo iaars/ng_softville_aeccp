@@ -13,8 +13,8 @@ export class UserService {
       .then(() => {
         canLogIn = true;
       })
-      .catch(() => {
-        console.error('Error en signInWithEmailAndPassword');
+      .catch((e: Error) => {
+        console.error(e.message);
       });
 
     return canLogIn;

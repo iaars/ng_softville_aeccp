@@ -4,10 +4,10 @@ import {getAuth, provideAuth} from '@angular/fire/auth';
 import {environment} from 'src/environments/environment';
 import {AppRoutingModule} from '../app-routing.module';
 
-import {AuthGuard} from './auth.guard';
+import {AuthLoginGuard} from './auth-login.guard';
 
-describe('AuthGuard', () => {
-  let guard: AuthGuard;
+describe('AuthLoginGuard', () => {
+  let guard: AuthLoginGuard;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
@@ -17,7 +17,7 @@ describe('AuthGuard', () => {
         provideAuth(() => getAuth())
       ]
     });
-    guard = TestBed.inject(AuthGuard);
+    guard = TestBed.inject(AuthLoginGuard);
   });
 
   it('should be created', () => {
