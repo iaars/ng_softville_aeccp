@@ -24,7 +24,7 @@ describe('UserService', () => {
 
   it('should log in', async () => {
     // usuario registrado
-    const prueba = await service.performLogin('prueba@mailinator.com', 'asdf1234');
+    const prueba = await service.performLogin('pruebe@mailinator.com', 'asdf1234');
     expect(prueba).toBeTrue();
   });
 
