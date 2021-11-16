@@ -6,7 +6,7 @@ import {Observable} from 'rxjs';
 @Injectable({
   providedIn: 'root'
 })
-export class AuthGuard implements CanActivate {
+export class AuthLoginGuard implements CanActivate {
   constructor(private router: Router, private auth: Auth) {}
 
   canActivate(): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
@@ -14,10 +14,10 @@ export class AuthGuard implements CanActivate {
       this.auth.onAuthStateChanged((user) => {
         const userStatus = user && user.emailVerified;
         if (userStatus) {
-          resolve(true);
-        } else {
-          this.router.navigate(['/login']);
+          this.router.navigate(['/home']);
           resolve(false);
+        } else {
+          resolve(true);
         }
       });
     });
