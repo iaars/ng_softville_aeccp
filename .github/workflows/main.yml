@@ -1,0 +1,43 @@
+name: Construir Softville-AECCP
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  construir:
+    name: Build
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+
+      - name: Configurar Node
+        uses: actions/setup-node@v2
+        with:
+          node-version: 14
+
+      - name: Cache de NPM
+        uses: actions/cache@v2
+        with:
+          path: '**/node_modules'
+          key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-node-
+
+      - name: Generar archivo de configuracion de Firebase
+        working-directory: src/environments
+        run: echo -n -e "${{secrets.FIREBASE_CONFIG}}" > firebase.environment.ts
+
+      - name: Instalar dependencias
+        run: npm install
+
+      - name: Crear build
+        run: npm run build
+
+      - name: Ejecutar pruebas
+        run: npm test
