@@ -1,5 +1,6 @@
 import {Injectable} from '@angular/core';
 import {Auth, signInWithEmailAndPassword} from '@angular/fire/auth';
+import {signOut} from '@firebase/auth';
 
 @Injectable({
   providedIn: 'root'
@@ -18,5 +19,19 @@ export class UserService {
       });
 
     return canLogIn;
+  }
+
+  public performLogout(): boolean {
+    let canLogOut = false;
+    signOut(this.auth)
+      .then(() => {
+        canLogOut = true;
+        console.log('Cerre sesión');
+      })
+      .catch((e: Error) => {
+        console.error(e.message);
+      });
+
+    return canLogOut;
   }
 }

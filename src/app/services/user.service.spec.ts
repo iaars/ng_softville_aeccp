@@ -34,4 +34,16 @@ describe('UserService', () => {
     const prueba = await service.performLogin('prueba@mailinator.com', 'asdf123');
     expect(prueba).toBeFalse();
   });
+
+  /* Revisar esta prueba
+  it('should logout', async () => {
+    await service.performLogin('prueba@mailinator.com', 'asdf1234');
+    const prueba = service.performLogout();
+    expect(prueba).toBeTrue();
+  }); */
+
+  it('should no logout', async () => {
+    const prueba = service.performLogout();
+    expect(prueba).toBeFalse();
+  });
 });
