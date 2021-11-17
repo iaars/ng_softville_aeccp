@@ -7,7 +7,13 @@ import {FormControl, FormGroup, Validators} from '@angular/forms';
   styleUrls: ['./create-appoiment-form.component.css']
 })
 export class CreateAppoimentFormComponent implements OnInit {
-  constructor() {}
+  public form: FormGroup;
+
+  constructor(public formGroup: FormGroup) {
+    this.form = formGroup;
+  }
 
   ngOnInit(): void {}
+
+  onSubmit() {}
 }
