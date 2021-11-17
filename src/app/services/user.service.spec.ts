@@ -1,19 +1,14 @@
 import {TestBed} from '@angular/core/testing';
-import {getAuth, provideAuth} from '@angular/fire/auth';
-import {initializeApp, provideFirebaseApp} from '@angular/fire/app';
 
 import {UserService} from './user.service';
-import {environment} from 'src/environments/environment';
+import {imports} from '../core/providers';
 
 describe('UserService', () => {
   let service: UserService;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      imports: [
-        provideFirebaseApp(() => initializeApp(environment.firebaseConfig)),
-        provideAuth(() => getAuth())
-      ]
+      imports: imports
     });
     service = TestBed.inject(UserService);
   });

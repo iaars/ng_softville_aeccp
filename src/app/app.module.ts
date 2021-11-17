@@ -1,24 +1,15 @@
 import {NgModule} from '@angular/core';
-import {BrowserModule} from '@angular/platform-browser';
-
-import {AppRoutingModule} from './app-routing.module';
 import {AppComponent} from './app.component';
-import {initializeApp, provideFirebaseApp} from '@angular/fire/app';
-import {environment} from '../environments/environment';
-import {provideAuth, getAuth} from '@angular/fire/auth';
-import {provideFirestore, getFirestore} from '@angular/fire/firestore';
 import {LoginComponent} from './pages/login/login.component';
 import {HomeComponent} from './pages/home/home.component';
 
+import {ButtonsComponent} from './shared/components/modals/modal/buttons/buttons.component';
+import {ModalComponent} from './shared/components/modals/modal/modal.component';
+import {imports} from './core/providers';
+
 @NgModule({
-  declarations: [AppComponent, LoginComponent, HomeComponent],
-  imports: [
-    BrowserModule,
-    AppRoutingModule,
-    provideFirebaseApp(() => initializeApp(environment.firebaseConfig)),
-    provideAuth(() => getAuth()),
-    provideFirestore(() => getFirestore())
-  ],
+  declarations: [AppComponent, LoginComponent, HomeComponent, ButtonsComponent, ModalComponent],
+  imports: imports,
   providers: [],
   bootstrap: [AppComponent]
 })

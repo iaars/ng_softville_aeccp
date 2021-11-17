@@ -1,8 +1,5 @@
 import {TestBed} from '@angular/core/testing';
-import {provideFirebaseApp, initializeApp} from '@angular/fire/app';
-import {getAuth, provideAuth} from '@angular/fire/auth';
-import {environment} from 'src/environments/environment';
-import {AppRoutingModule} from '../app-routing.module';
+import {imports} from '../core/providers';
 
 import {AuthLoginGuard} from './auth-login.guard';
 
@@ -11,11 +8,7 @@ describe('AuthLoginGuard', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      imports: [
-        AppRoutingModule,
-        provideFirebaseApp(() => initializeApp(environment.firebaseConfig)),
-        provideAuth(() => getAuth())
-      ]
+      imports: imports
     });
     guard = TestBed.inject(AuthLoginGuard);
   });
