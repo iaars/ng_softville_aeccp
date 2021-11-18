@@ -73,6 +73,11 @@ export class CreateAppoimentComponent extends AccessInterface {
   protected onInvalidData(): void {
     throw new Error('Method not implemented.');
   }
+
+  public crearPaciente(): void {
+    this.router.navigate(['/create-patient']);
+  }
+
   private async getUsers(): Promise<void> {
     const querySnapshotPatient = await getDocs(
       query(collection(this.firestore, 'usuarios'), where('tipo', '==', 'Paciente'))
