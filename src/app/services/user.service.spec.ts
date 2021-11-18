@@ -18,24 +18,28 @@ describe('UserService', () => {
     expect(service).toBeTruthy();
   });
 
+  // Prueba GC1
   it('should log in', async () => {
     // usuario registrado
     const prueba = await service.performLogin('prueba@mailinator.com', 'asdf1234');
     expect(prueba).toBeTrue();
   });
 
-  it('should not log in because it is not registered', async () => {
-    // usuario no registrado
-    const prueba = await service.performLogin('josue@mailinator.com', 'asdf1234');
-    expect(prueba).toBeFalse();
-  });
-
+  // Prueba GC2
   it('should not log in because the password is not correct', async () => {
     // usuario registrado con contraseña incorrecta
     const prueba = await service.performLogin('prueba@mailinator.com', 'asdf123');
     expect(prueba).toBeFalse();
   });
 
+  // Prueba GC3
+  it('should not log in because it is not registered', async () => {
+    // usuario no registrado
+    const prueba = await service.performLogin('josue@mailinator.com', 'asdf1234');
+    expect(prueba).toBeFalse();
+  });
+
+  // Prueba GC4
   it('should log out', async () => {
     await service.performLogin('prueba@mailinator.com', 'asdf1234');
     const prueba = await service.performLogout();
