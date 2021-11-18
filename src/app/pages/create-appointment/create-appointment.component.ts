@@ -9,9 +9,9 @@ import {Cita} from 'db/src/cita/cita';
 import {Router} from '@angular/router';
 
 @Component({
-  selector: 'app-create-appoiment',
-  templateUrl: './create-appoiment.component.html',
-  styleUrls: ['./create-appoiment.component.css']
+  selector: 'app-create-appointment',
+  templateUrl: './create-appointment.component.html',
+  styleUrls: ['./create-appointment.component.css']
 })
 export class CreateAppoimentComponent extends AccessInterface {
   patients: UsuarioWrapper[] = [];
@@ -72,6 +72,10 @@ export class CreateAppoimentComponent extends AccessInterface {
 
   protected onInvalidData(): void {
     throw new Error('Method not implemented.');
+  }
+
+  public crearPaciente(): void {
+    this.router.navigate(['/create-patient']);
   }
 
   private async getUsers(): Promise<void> {

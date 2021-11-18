@@ -13,6 +13,16 @@
         </mat-select>
       </mat-form-field>
 
+      <button
+        mat-raised-button
+        color="primary"
+        type="button"
+        title="Si el paciente no aparece en la lista, puede presionar este botón para crearlo"
+        (click)="crearPaciente()"
+      >
+        Crear paciente
+      </button>
+
       <mat-form-field appearance="fill">
         <mat-label>Profesional que atiende</mat-label>
         <mat-select formControlName="professional">
