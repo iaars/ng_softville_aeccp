@@ -1,6 +1,5 @@
 import {Injectable} from '@angular/core';
-import {Auth, signInWithEmailAndPassword} from '@angular/fire/auth';
-import {signOut} from '@firebase/auth';
+import {Auth, signInWithEmailAndPassword, signOut} from '@angular/fire/auth';
 
 @Injectable({
   providedIn: 'root'
@@ -28,7 +27,7 @@ export class UserService {
         canLogOut = true;
       })
       .catch((e: Error) => {
-        console.error(e.message, 'aqui');
+        console.error(e.message);
       });
 
     return canLogOut;

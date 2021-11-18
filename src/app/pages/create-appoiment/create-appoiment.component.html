@@ -7,18 +7,18 @@
       <mat-form-field appearance="fill">
         <mat-label>Paciente</mat-label>
         <mat-select formControlName="patient">
-          <mat-option *ngFor="let patient of patients" value="{{ patient.id }}">{{
-            patient.user.nombre
-          }}</mat-option>
+          <mat-option *ngFor="let patient of patients" value="{{ patient.id }}">
+            {{ patient.user.nombre }} {{ patient.user.apellidos }}
+          </mat-option>
         </mat-select>
       </mat-form-field>
 
       <mat-form-field appearance="fill">
         <mat-label>Profesional que atiende</mat-label>
         <mat-select formControlName="professional">
-          <mat-option *ngFor="let professional of professionals" value="{{ professional.id }}">{{
-            professional.user.nombre
-          }}</mat-option>
+          <mat-option *ngFor="let professional of professionals" value="{{ professional.id }}">
+            {{ professional.user.nombre }} {{ professional.user.apellidos }}
+          </mat-option>
         </mat-select>
       </mat-form-field>
 
