@@ -20,16 +20,21 @@ export class UserService {
     return canLogIn;
   }
 
-  public performLogout(): boolean {
+  public async performLogout(): Promise<boolean> {
     let canLogOut = false;
-    signOut(this.auth)
+    await signOut(this.auth)
       .then(() => {
         canLogOut = true;
+        console.log('SE PUDO HACER LOGOUT');
       })
       .catch((e: Error) => {
-        console.error(e.message);
+        console.error('ERROR DE LOGOUT');
       });
 
     return canLogOut;
+  }
+
+  public isLoggedIn(): boolean {
+    return !!this.auth.currentUser;
   }
 }
