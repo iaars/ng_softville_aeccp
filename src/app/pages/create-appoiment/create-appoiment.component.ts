@@ -1,13 +1,11 @@
-import {Component, OnInit} from '@angular/core';
-import {Firestore, where, query, setDoc, doc, collection, getDocs} from '@angular/fire/firestore';
+import {Component} from '@angular/core';
+import {Firestore, where, query, collection, getDocs, addDoc} from '@angular/fire/firestore';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {AccessInterface} from 'src/app/core/interfaces/access-interface';
 import {UserService} from 'src/app/services/user.service';
 import {Usuario} from 'db/src/usuario/usuario';
 import {UsuarioWrapper} from 'src/app/core/wrappers/UsuarioWrapper';
-import {Time} from '@angular/common';
 import {Cita} from 'db/src/cita/cita';
-import {addDoc} from '@firebase/firestore';
 import {Router} from '@angular/router';
 
 @Component({
@@ -45,7 +43,6 @@ export class CreateAppoimentComponent extends AccessInterface {
   }
 
   ngOnInit(): void {
-    //this.generateTimes();
     this.getUsers();
   }
 
@@ -53,9 +50,10 @@ export class CreateAppoimentComponent extends AccessInterface {
     if (!this.form.valid) {
       return;
     }
+
     const date = new Date(this.form.get('date')?.value);
-    let str = this.form.get('time')?.value;
-    let timeSplitted = str.split(':');
+    const str = this.form.get('time')?.value;
+    const timeSplitted = str.split(':');
     date.setHours(parseInt(timeSplitted[0]), parseInt(timeSplitted[1]));
     const cita: Cita = {
       fechaHora: date.getTime(),
@@ -63,6 +61,7 @@ export class CreateAppoimentComponent extends AccessInterface {
       idPaciente: this.form.get('patient')?.value,
       idProfesional: this.form.get('professional')?.value
     };
+
     addDoc(collection(this.firestore, 'citas'), cita);
     this.router.navigate(['/home']);
   }
@@ -70,6 +69,7 @@ export class CreateAppoimentComponent extends AccessInterface {
   protected onSuccess(): void {
     throw new Error('Method not implemented.');
   }
+
   protected onInvalidData(): void {
     throw new Error('Method not implemented.');
   }
@@ -82,6 +82,7 @@ export class CreateAppoimentComponent extends AccessInterface {
     const querySnapshotPatient = await getDocs(
       query(collection(this.firestore, 'usuarios'), where('tipo', '==', 'Paciente'))
     );
+
     querySnapshotPatient.forEach((patient) => {
       this.patients.push({
         id: patient.id,
@@ -92,6 +93,7 @@ export class CreateAppoimentComponent extends AccessInterface {
     const querySnapshotProfessional = await getDocs(
       query(collection(this.firestore, 'usuarios'), where('tipo', '==', 'Profesional'))
     );
+
     querySnapshotProfessional.forEach((professional) => {
       this.professionals.push({
         id: professional.id,

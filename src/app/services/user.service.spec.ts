@@ -36,17 +36,9 @@ describe('UserService', () => {
     expect(prueba).toBeFalse();
   });
 
-  //El performLogout no detecta el inicio de sesión a pesar que service es el mismo
-  /*
-  it('should logout', async () => {
+  it('should log out', async () => {
     await service.performLogin('prueba@mailinator.com', 'asdf1234');
-    const prueba = service.performLogout();
+    const prueba = await service.performLogout();
     expect(prueba).toBeTrue();
-  });
-  */
-
-  it('should no logout because there is no one loged in', async () => {
-    const prueba = service.performLogout();
-    expect(prueba).toBeFalse();
   });
 });

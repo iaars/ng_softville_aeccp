@@ -18,6 +18,7 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {MatDatepickerModule} from '@angular/material/datepicker';
 import {MatToolbarModule} from '@angular/material/toolbar';
 import {MatNativeDateModule} from '@angular/material/core';
+import {MatTableModule} from '@angular/material/table';
 
 export const imports = [
   BrowserModule,
@@ -36,5 +37,6 @@ export const imports = [
   MatSelectModule,
   MatDatepickerModule,
   MatToolbarModule,
-  MatNativeDateModule
+  MatNativeDateModule,
+  MatTableModule
 ];
