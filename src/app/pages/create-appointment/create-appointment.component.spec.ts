@@ -1,7 +1,7 @@
 import {ComponentFixture, TestBed} from '@angular/core/testing';
-import { imports } from 'src/app/core/providers';
+import {imports} from 'src/app/core/providers';
 
-import {CreateAppoimentComponent} from './create-appoiment.component';
+import {CreateAppoimentComponent} from './create-appointment.component';
 
 describe('CreateAppoimentComponent', () => {
   let component: CreateAppoimentComponent;

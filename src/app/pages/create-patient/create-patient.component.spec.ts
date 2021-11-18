@@ -1,4 +1,5 @@
 import {ComponentFixture, TestBed} from '@angular/core/testing';
+import {imports} from 'src/app/core/providers';
 
 import {CreatePatientComponent} from './create-patient.component';
 
@@ -8,7 +9,8 @@ describe('CreatePatientComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [CreatePatientComponent]
+      declarations: [CreatePatientComponent],
+      imports: imports
     }).compileComponents();
   });
 
