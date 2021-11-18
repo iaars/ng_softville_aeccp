@@ -1,10 +1,11 @@
-import {TestBed} from '@angular/core/testing';
+import {TestBed, waitForAsync} from '@angular/core/testing';
 
 import {UserService} from './user.service';
 import {imports} from '../core/providers';
 
 describe('UserService', () => {
   let service: UserService;
+  let spy: any;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
@@ -35,14 +36,16 @@ describe('UserService', () => {
     expect(prueba).toBeFalse();
   });
 
-  /* Revisar esta prueba
+  //El performLogout no detecta el inicio de sesión a pesar que service es el mismo
+  /*
   it('should logout', async () => {
     await service.performLogin('prueba@mailinator.com', 'asdf1234');
     const prueba = service.performLogout();
     expect(prueba).toBeTrue();
-  }); */
+  });
+  */
 
-  it('should no logout', async () => {
+  it('should no logout because there is no one loged in', async () => {
     const prueba = service.performLogout();
     expect(prueba).toBeFalse();
   });

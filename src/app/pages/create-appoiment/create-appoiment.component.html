@@ -1,1 +1,44 @@
-<app-create-appoiment-form></app-create-appoiment-form>
+<app-navbar></app-navbar>
+
+<form [formGroup]="form" (ngSubmit)="onSubmit()">
+  <mat-form-field appearance="fill">
+    <mat-label>Nombre del paciente</mat-label>
+    <input formControlName="paciente" required />
+  </mat-form-field>
+
+  <mat-form-field appearance="fill">
+    <mat-label>Cédula de identidad</mat-label>
+    <input formControlName="cedula" required />
+  </mat-form-field>
+
+  <mat-form-field appearance="fill">
+    <mat-label>Teléfono</mat-label>
+    <input formControlName="telefono" required />
+  </mat-form-field>
+
+  <mat-form-field appearance="fill">
+    <mat-label>Correo</mat-label>
+    <input formControlName="correo" required />
+  </mat-form-field>
+
+  <mat-form-field appearance="fill">
+    <mat-label>Profesional asignado</mat-label>
+    <input formControlName="profesional" required />
+  </mat-form-field>
+
+  <mat-form-field appearance="fill">
+    <mat-label>Fecha</mat-label>
+    <input formControlName="fecha" required />
+  </mat-form-field>
+
+  <mat-form-field appearance="fill">
+    <mat-label>Hora</mat-label>
+    <input formControlName="hora" required />
+  </mat-form-field>
+
+  <div class="submitButton">
+    <button mat-raised-button color="primary" type="submit" [disabled]="!form.valid">
+      Iniciar sesión
+    </button>
+  </div>
+</form>

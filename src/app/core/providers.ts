@@ -16,6 +16,7 @@ import {MatInputModule} from '@angular/material/input';
 import {MatDialogModule} from '@angular/material/dialog';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {MatDatepickerModule} from '@angular/material/datepicker';
+import {MatToolbarModule} from '@angular/material/toolbar';
 
 export const imports = [
   BrowserModule,
@@ -32,5 +33,6 @@ export const imports = [
   provideFirestore(() => getFirestore()),
   BrowserAnimationsModule,
   MatSelectModule,
-  MatDatepickerModule
+  MatDatepickerModule,
+  MatToolbarModule
 ];

@@ -6,9 +6,8 @@ import {HomeComponent} from './pages/home/home.component';
 import {ButtonsComponent} from './shared/components/modals/modal/buttons/buttons.component';
 import {ModalComponent} from './shared/components/modals/modal/modal.component';
 import {imports} from './core/providers';
-import {HomeMenuComponent} from './shared/components/home-menu/home-menu.component';
 import {CreateAppoimentComponent} from './pages/create-appoiment/create-appoiment.component';
-import {CreateAppoimentFormComponent} from './shared/components/create-appoiment-form/create-appoiment-form.component';
+import {NavbarComponent} from './shared/components/navbar/navbar.component';
 
 @NgModule({
   declarations: [
@@ -17,9 +16,8 @@ import {CreateAppoimentFormComponent} from './shared/components/create-appoiment
     HomeComponent,
     ButtonsComponent,
     ModalComponent,
-    HomeMenuComponent,
     CreateAppoimentComponent,
-    CreateAppoimentFormComponent
+    NavbarComponent
   ],
   imports: imports,
   providers: [],

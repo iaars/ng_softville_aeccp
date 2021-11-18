@@ -26,10 +26,9 @@ export class UserService {
     signOut(this.auth)
       .then(() => {
         canLogOut = true;
-        console.log('Cerre sesión');
       })
       .catch((e: Error) => {
-        console.error(e.message);
+        console.error(e.message, 'aqui');
       });
 
     return canLogOut;
