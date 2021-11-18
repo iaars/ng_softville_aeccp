@@ -6,9 +6,19 @@ import {HomeComponent} from './pages/home/home.component';
 import {ButtonsComponent} from './shared/components/modals/modal/buttons/buttons.component';
 import {ModalComponent} from './shared/components/modals/modal/modal.component';
 import {imports} from './core/providers';
+import {CreateAppoimentComponent} from './pages/create-appoiment/create-appoiment.component';
+import {NavbarComponent} from './shared/components/navbar/navbar.component';
 
 @NgModule({
-  declarations: [AppComponent, LoginComponent, HomeComponent, ButtonsComponent, ModalComponent],
+  declarations: [
+    AppComponent,
+    LoginComponent,
+    HomeComponent,
+    ButtonsComponent,
+    ModalComponent,
+    CreateAppoimentComponent,
+    NavbarComponent
+  ],
   imports: imports,
   providers: [],
   bootstrap: [AppComponent]

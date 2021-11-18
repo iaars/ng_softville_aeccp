@@ -1,0 +1,46 @@
+<app-navbar></app-navbar>
+
+<mat-card>
+  <mat-card-title>Crear cita</mat-card-title>
+  <mat-card-content>
+    <form [formGroup]="form" (ngSubmit)="onSubmit()">
+      <mat-form-field appearance="fill">
+        <mat-label>Paciente</mat-label>
+        <mat-select formControlName="patient">
+          <mat-option *ngFor="let patient of patients" value="{{ patient.id }}">
+            {{ patient.user.nombre }} {{ patient.user.apellidos }}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <mat-form-field appearance="fill">
+        <mat-label>Profesional que atiende</mat-label>
+        <mat-select formControlName="professional">
+          <mat-option *ngFor="let professional of professionals" value="{{ professional.id }}">
+            {{ professional.user.nombre }} {{ professional.user.apellidos }}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <mat-form-field appearance="fill">
+        <mat-label>Fecha de la cita</mat-label>
+        <input [disabled]="true" formControlName="date" matInput [matDatepicker]="picker" />
+        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker #picker disabled="false"></mat-datepicker>
+      </mat-form-field>
+
+      <mat-form-field appearance="fill">
+        <mat-label>Hora de la cita</mat-label>
+        <mat-select formControlName="time">
+          <mat-option *ngFor="let time of times" value="{{ time }}">{{ time }}</mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <div class="submitButton">
+        <button color="primary" type="submit" mat-raised-button [disabled]="!form.valid">
+          Crear cita
+        </button>
+      </div>
+    </form>
+  </mat-card-content>
+</mat-card>

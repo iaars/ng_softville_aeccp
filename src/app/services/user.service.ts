@@ -1,5 +1,5 @@
 import {Injectable} from '@angular/core';
-import {Auth, signInWithEmailAndPassword} from '@angular/fire/auth';
+import {Auth, signInWithEmailAndPassword, signOut} from '@angular/fire/auth';
 
 @Injectable({
   providedIn: 'root'
@@ -18,5 +18,23 @@ export class UserService {
       });
 
     return canLogIn;
+  }
+
+  public async performLogout(): Promise<boolean> {
+    let canLogOut = false;
+    await signOut(this.auth)
+      .then(() => {
+        canLogOut = true;
+        console.log('SE PUDO HACER LOGOUT');
+      })
+      .catch((e: Error) => {
+        console.error('ERROR DE LOGOUT');
+      });
+
+    return canLogOut;
+  }
+
+  public isLoggedIn(): boolean {
+    return !!this.auth.currentUser;
   }
 }

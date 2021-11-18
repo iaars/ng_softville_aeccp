@@ -1,10 +1,11 @@
-import {TestBed} from '@angular/core/testing';
+import {TestBed, waitForAsync} from '@angular/core/testing';
 
 import {UserService} from './user.service';
 import {imports} from '../core/providers';
 
 describe('UserService', () => {
   let service: UserService;
+  let spy: any;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
@@ -33,5 +34,11 @@ describe('UserService', () => {
     // usuario registrado con contraseña incorrecta
     const prueba = await service.performLogin('prueba@mailinator.com', 'asdf123');
     expect(prueba).toBeFalse();
+  });
+
+  it('should log out', async () => {
+    await service.performLogin('prueba@mailinator.com', 'asdf1234');
+    const prueba = await service.performLogout();
+    expect(prueba).toBeTrue();
   });
 });

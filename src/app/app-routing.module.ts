@@ -2,6 +2,7 @@ import {NgModule} from '@angular/core';
 import {RouterModule, Routes} from '@angular/router';
 import {AuthLoginGuard} from './guards/auth-login.guard';
 import {AuthGuard} from './guards/auth.guard';
+import {CreateAppoimentComponent} from './pages/create-appoiment/create-appoiment.component';
 import {HomeComponent} from './pages/home/home.component';
 import {LoginComponent} from './pages/login/login.component';
 
@@ -19,6 +20,11 @@ const routes: Routes = [
   {
     path: '',
     component: HomeComponent,
+    canActivate: [AuthGuard]
+  },
+  {
+    path: 'create-appoiment',
+    component: CreateAppoimentComponent,
     canActivate: [AuthGuard]
   }
 ];
