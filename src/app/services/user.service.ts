@@ -25,12 +25,8 @@ export class UserService {
     await signOut(this.auth)
       .then(() => {
         canLogOut = true;
-        console.log('SE PUDO HACER LOGOUT');
       })
-      .catch((e: Error) => {
-        console.error('ERROR DE LOGOUT');
-      });
-
+      .catch((e: Error) => {});
     return canLogOut;
   }
 
