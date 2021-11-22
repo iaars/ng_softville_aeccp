@@ -19,4 +19,8 @@ export class NavbarComponent implements OnInit {
   logout(): void {
     this.userService.performLogout();
   }
+
+  isLoggedIn(): boolean {
+    return this.userService.isLoggedIn();
+  }
 }

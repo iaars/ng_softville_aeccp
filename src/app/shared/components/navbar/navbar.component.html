@@ -1,4 +1,4 @@
 <mat-toolbar>
   <h2>Control de citas de pacientes</h2>
-  <button mat-button (click)="logout()">Cerrar sesión</button>
+  <button *ngIf="isLoggedIn()" mat-button (click)="logout()">Cerrar sesión</button>
 </mat-toolbar>
