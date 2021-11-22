@@ -12,7 +12,7 @@ export class NavbarComponent implements OnInit {
 
   ngOnInit(): void {}
 
-  toCreateAppoiment(): void {
+  toCreateAppointment(): void {
     this.router.navigate(['/create-appointment']);
   }
 

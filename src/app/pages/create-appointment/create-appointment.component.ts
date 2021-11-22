@@ -13,7 +13,7 @@ import {Router} from '@angular/router';
   templateUrl: './create-appointment.component.html',
   styleUrls: ['./create-appointment.component.css']
 })
-export class CreateAppoimentComponent extends AccessInterface {
+export class CreateAppointmentComponent extends AccessInterface {
   patients: UsuarioWrapper[] = [];
   professionals: UsuarioWrapper[] = [];
   times: string[] = [
