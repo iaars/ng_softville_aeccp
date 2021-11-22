@@ -7,6 +7,7 @@ import {Usuario} from 'db/src/usuario/usuario';
 import {UsuarioWrapper} from 'src/app/core/wrappers/UsuarioWrapper';
 import {Cita} from 'db/src/cita/cita';
 import {Router} from '@angular/router';
+import {DateAdapter} from '@angular/material/core';
 
 @Component({
   selector: 'app-create-appointment',
@@ -30,7 +31,12 @@ export class CreateAppointmentComponent extends AccessInterface {
     '21:00'
   ];
 
-  constructor(userService: UserService, private firestore: Firestore, private router: Router) {
+  constructor(
+    userService: UserService,
+    private firestore: Firestore,
+    private router: Router,
+    private dateAdapter: DateAdapter<Date>
+  ) {
     super(
       userService,
       new FormGroup({
@@ -40,6 +46,7 @@ export class CreateAppointmentComponent extends AccessInterface {
         time: new FormControl('', [Validators.required])
       })
     );
+    this.dateAdapter.setLocale('es-ES');
   }
 
   ngOnInit(): void {
