@@ -1,22 +1,29 @@
-<app-navbar></app-navbar>
-
 <div class="demo-button-container">
-  <button mat-raised-button color="primary" class="demo-button" routerLink="/create-appointment">
-    <mat-icon>add</mat-icon>Crear cita
+  <button mat-raised-button color="primary" class="demo-button" routerLink="/home">
+    <mat-icon>home</mat-icon>Volver
   </button>
 </div>
+<mat-card>
+  <mat-card-title>Generar reporte</mat-card-title>
+  <mat-card-content>
+    <form [formGroup]="form" (ngSubmit)="onSubmit()">
+      <mat-form-field appearance="fill">
+        <mat-label>Paciente</mat-label>
+        <mat-select formControlName="patient">
+          <mat-option *ngFor="let patient of patients" value="{{ patient.id }}">
+            {{ patient.user.nombre }} {{ patient.user.apellidos }}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
 
-<div class="demo-button-container">
-  <button mat-raised-button color="primary" class="demo-button" routerLink="/generate-report">
-    <mat-icon>playlist_add</mat-icon>Generar reporte
-  </button>
-</div>
-
-<div class="demo-button-container">
-  <button mat-raised-button color="primary" class="demo-button" routerLink="/generate-report-count">
-    <mat-icon>playlist_add</mat-icon>Generar reporte de cantidad
-  </button>
-</div>
+      <div class="submitButton">
+        <button color="primary" type="submit" mat-raised-button [disabled]="!form.valid">
+          Generar reporte
+        </button>
+      </div>
+    </form>
+  </mat-card-content>
+</mat-card>
 
 <div class="mat-elevation-z8">
   <table id="tags-table" mat-table [dataSource]="dataSource">

@@ -9,6 +9,8 @@ import {imports} from './core/providers';
 import {CreateAppoimentComponent} from './pages/create-appointment/create-appointment.component';
 import {NavbarComponent} from './shared/components/navbar/navbar.component';
 import {CreatePatientComponent} from './pages/create-patient/create-patient.component';
+import { GenerateReportComponent } from './pages/generate-report/generate-report.component';
+import { GenerateReportCountComponent } from './pages/generate-report-count/generate-report-count.component';
 
 @NgModule({
   declarations: [
@@ -19,7 +21,9 @@ import {CreatePatientComponent} from './pages/create-patient/create-patient.comp
     ModalComponent,
     CreateAppoimentComponent,
     NavbarComponent,
-    CreatePatientComponent
+    CreatePatientComponent,
+    GenerateReportComponent,
+    GenerateReportCountComponent
   ],
   imports: imports,
   providers: [],

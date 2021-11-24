@@ -1,0 +1,25 @@
+.demo-button-container {
+  margin: 2em;
+  padding: 5px;
+  display: flex;
+  justify-content: center;
+}
+
+#tags-table {
+  display: table;
+  table-layout: fixed;
+  width: 100% !important;
+  text-align: center;
+}
+
+.name-th {
+  width: 20%;
+}
+
+.button-th {
+  width: 10%;
+}
+
+.mat-header-cell {
+  text-align: center;
+}
