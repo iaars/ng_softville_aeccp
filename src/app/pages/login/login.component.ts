@@ -49,7 +49,7 @@ export class LoginComponent extends AccessInterface {
 
   // ! Las pruebas para este método son de UI
   protected onSuccess(): void {
-    this.router.navigate(['/home']);
+    this.router.navigate(['/']);
   }
 
   // ! Las pruebas para este método son de UI

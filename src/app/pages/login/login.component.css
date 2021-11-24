@@ -11,12 +11,3 @@
   justify-content: center;
   margin: 2em 0;
 }
-
-#signup-statement {
-  display: flex;
-  flex-direction: row;
-}
-
-#signup-statement > * {
-  margin: 3em 0 0 0;
-}

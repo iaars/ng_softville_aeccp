@@ -1,27 +1,28 @@
-<app-navbar></app-navbar>
-
 <mat-card>
   <mat-card-title>Crear cita</mat-card-title>
   <mat-card-content>
     <form [formGroup]="form" (ngSubmit)="onSubmit()">
-      <mat-form-field appearance="fill">
-        <mat-label>Paciente</mat-label>
-        <mat-select formControlName="patient">
-          <mat-option *ngFor="let patient of patients" value="{{ patient.id }}">
-            {{ patient.user.nombre }} {{ patient.user.apellidos }}
-          </mat-option>
-        </mat-select>
-      </mat-form-field>
+      <div id="pacient-fields">
+        <mat-form-field id="pacient-dropdown" appearance="fill">
+          <mat-label>Paciente</mat-label>
+          <mat-select formControlName="patient">
+            <mat-option *ngFor="let patient of patients" value="{{ patient.id }}">
+              {{ patient.user.nombre }} {{ patient.user.apellidos }}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
 
-      <button
-        mat-raised-button
-        color="primary"
-        type="button"
-        title="Si el paciente no aparece en la lista, puede presionar este botón para crearlo"
-        (click)="crearPaciente()"
-      >
-        Crear paciente
-      </button>
+        <button
+          id="new-pacient-button"
+          mat-raised-button
+          color="primary"
+          type="button"
+          title="Si el paciente no aparece en la lista, puede presionar este botón para añadirlo."
+          (click)="crearPaciente()"
+        >
+          Nuevo paciente
+        </button>
+      </div>
 
       <mat-form-field appearance="fill">
         <mat-label>Profesional que atiende</mat-label>
@@ -34,7 +35,7 @@
 
       <mat-form-field appearance="fill">
         <mat-label>Fecha de la cita</mat-label>
-        <input [disabled]="true" formControlName="date" matInput [matDatepicker]="picker" />
+        <input readonly formControlName="date" matInput [matDatepicker]="picker" />
         <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
         <mat-datepicker #picker disabled="false"></mat-datepicker>
       </mat-form-field>

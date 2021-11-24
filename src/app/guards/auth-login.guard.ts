@@ -13,8 +13,8 @@ export class AuthLoginGuard implements CanActivate {
     return new Promise((resolve) => {
       this.auth.onAuthStateChanged((user) => {
         if (user) {
-          this.router.navigate(['/home']);
           resolve(false);
+          this.router.navigate(['/home']);
         } else {
           resolve(true);
         }
