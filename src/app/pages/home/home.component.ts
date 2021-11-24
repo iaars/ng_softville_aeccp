@@ -2,18 +2,14 @@ import {Component, OnInit} from '@angular/core';
 import {MatTableDataSource} from '@angular/material/table';
 import {
   Firestore,
-  where,
   query,
   collection,
-  getDocs,
-  addDoc,
   onSnapshot
 } from '@angular/fire/firestore';
 import {Cita} from 'db/src/cita/cita';
 import {Usuario} from 'db/src/usuario/usuario';
 import {CitaWrapper} from 'src/app/core/wrappers/CitaWrapper';
 import {UsuarioWrapper} from 'src/app/core/wrappers/UsuarioWrapper';
-import {fakeAsync} from '@angular/core/testing';
 
 @Component({
   selector: 'app-home',

@@ -6,7 +6,7 @@ import {HomeComponent} from './pages/home/home.component';
 import {ButtonsComponent} from './shared/components/modals/modal/buttons/buttons.component';
 import {ModalComponent} from './shared/components/modals/modal/modal.component';
 import {imports} from './core/providers';
-import {CreateAppoimentComponent} from './pages/create-appointment/create-appointment.component';
+import {CreateAppointmentComponent} from './pages/create-appointment/create-appointment.component';
 import {NavbarComponent} from './shared/components/navbar/navbar.component';
 import {CreatePatientComponent} from './pages/create-patient/create-patient.component';
 import { GenerateReportComponent } from './pages/generate-report/generate-report.component';
@@ -19,7 +19,7 @@ import { GenerateReportCountComponent } from './pages/generate-report-count/gene
     HomeComponent,
     ButtonsComponent,
     ModalComponent,
-    CreateAppoimentComponent,
+    CreateAppointmentComponent,
     NavbarComponent,
     CreatePatientComponent,
     GenerateReportComponent,
