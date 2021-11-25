@@ -1,4 +1,4 @@
-import {Usuario} from 'db/src/usuario/usuario';
+import {TipoUsuario, Usuario} from 'db/src/usuario/usuario';
 
 export interface UsuarioWrapper {
   id: string;

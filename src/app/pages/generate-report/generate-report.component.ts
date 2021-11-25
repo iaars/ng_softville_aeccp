@@ -3,7 +3,7 @@ import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {UserService} from 'src/app/services/user.service';
 import { AccessInterface } from 'src/app/core/interfaces/access-interface';
 import { UsuarioWrapper } from 'src/app/core/wrappers/UsuarioWrapper';
-import {Firestore, where, query, collection, getDocs, addDoc} from '@angular/fire/firestore';
+import {Firestore, where, query, collection, getDocs} from '@angular/fire/firestore';
 import { Usuario } from 'db/src/usuario/usuario';
 import { Router } from '@angular/router';
 import { CitaWrapper } from 'src/app/core/wrappers/CitaWrapper';

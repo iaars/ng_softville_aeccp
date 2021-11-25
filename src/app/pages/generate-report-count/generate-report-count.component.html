@@ -1,24 +1,30 @@
+<div class="demo-button-container">
+  <button mat-raised-button color="primary" class="demo-button" routerLink="/home">
+    <mat-icon>home</mat-icon>Volver
+  </button>
+</div>
 <mat-card>
-  <mat-card-title>Generar Reporte</mat-card-title>
+  <mat-card-title>Reporte de cantidad de citas</mat-card-title>
   <mat-card-content>
     <form [formGroup]="form" (ngSubmit)="onSubmit()">
       <mat-form-field appearance="fill">
-        <mat-label>Paciente</mat-label>
-        <mat-select formControlName="patient">
-          <mat-option *ngFor="let patient of patients" value="{{ patient.id }}">
-            {{ patient.user.nombre }} {{ patient.user.apellidos }}
+        <mat-label>Tipo de usuario</mat-label>
+        <mat-select formControlName="userType" (selectionChange)="onSelect($event)">
+          <mat-option *ngFor="let userType of userTypes" value="{{ userType }}">
+            {{userType}}
           </mat-option>
         </mat-select>
       </mat-form-field>
 
       <mat-form-field appearance="fill">
-        <mat-label>Profesional</mat-label>
-        <mat-select formControlName="professional">
-          <mat-option *ngFor="let professional of professionals" value="{{ professional.id }}">
-            {{ professional.user.nombre }} {{ professional.user.apellidos }}
+        <mat-label>Usuario</mat-label>
+        <mat-select formControlName="userSelected" [disabled]="!enableForm">
+          <mat-option *ngFor="let userSelected of usersSelected" value="{{ userSelected.id }}">
+            {{ userSelected.user.nombre }} {{ userSelected.user.apellidos }}
           </mat-option>
         </mat-select>
       </mat-form-field>
+
 
       <div class="submitButton">
         <button color="primary" type="submit" mat-raised-button [disabled]="!form.valid">
@@ -28,3 +34,6 @@
     </form>
   </mat-card-content>
 </mat-card>
+
+
+<p>Cantidad de citas de este usuario: {{appointmentsQuantity}}</p>
