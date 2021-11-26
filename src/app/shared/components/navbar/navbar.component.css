@@ -3,6 +3,25 @@ mat-toolbar {
   color: white;
   display: flex;
   justify-content: space-between;
+  height: 5vh;
+}
+
+@media (min-height: 1024px) and (max-height: 1200px) {
+  mat-toolbar {
+    height: 6vh;
+  }
+}
+
+@media (min-height: 768px) and (max-height: 1024px) {
+  mat-toolbar {
+    height: 7vh;
+  }
+}
+
+@media (max-height: 768px) {
+  mat-toolbar {
+    height: 8vh;
+  }
 }
 
 .spacer {

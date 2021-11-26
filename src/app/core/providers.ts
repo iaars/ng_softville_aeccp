@@ -19,6 +19,7 @@ import {MatDatepickerModule} from '@angular/material/datepicker';
 import {MatToolbarModule} from '@angular/material/toolbar';
 import {MatNativeDateModule} from '@angular/material/core';
 import {MatTableModule} from '@angular/material/table';
+import {MatSidenavModule} from '@angular/material/sidenav';
 
 export const imports = [
   BrowserModule,
@@ -38,5 +39,6 @@ export const imports = [
   MatDatepickerModule,
   MatToolbarModule,
   MatNativeDateModule,
-  MatTableModule
+  MatTableModule,
+  MatSidenavModule
 ];

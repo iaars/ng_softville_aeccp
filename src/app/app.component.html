@@ -1,2 +1,16 @@
-<app-navbar></app-navbar>
-<router-outlet></router-outlet>
+<app-navbar [sidenav]="sidenav"></app-navbar>
+<mat-sidenav-container>
+  <mat-sidenav #sidenav mode="over" [(opened)]="opened">
+    <button class="sidenav-button" mat-button (click)="goToDashboard()">
+      <mat-icon class="sidenav-button-icon">home</mat-icon>Control de citas
+    </button>
+    <button class="sidenav-button" mat-button (click)="goToDashboard()">
+      <mat-icon class="sidenav-button-icon">summarize</mat-icon>Reportes
+    </button>
+  </mat-sidenav>
+
+  <mat-sidenav-content>
+    <router-outlet></router-outlet>
+  </mat-sidenav-content>
+</mat-sidenav-container>
+<app-footer></app-footer>

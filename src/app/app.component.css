@@ -1,0 +1,43 @@
+mat-sidenav-container {
+  height: 90vh;
+}
+
+@media (min-height: 1024px) and (max-height: 1200px) {
+  mat-sidenav-container {
+    height: 88vh;
+  }
+}
+
+@media (min-height: 768px) and (max-height: 1024px) {
+  mat-sidenav-container {
+    height: 86vh;
+  }
+}
+
+@media (max-height: 768px) {
+  mat-sidenav-container {
+    height: 84vh;
+  }
+}
+
+mat-sidenav {
+  padding: 16px;
+  background-color: var(--primary-color);
+  color: white;
+  width: 25em;
+}
+
+mat-sidenav-content {
+  padding: 16px;
+}
+
+.sidenav-button {
+  width: 100%;
+  text-align: start;
+  padding-top: 0.5em;
+  padding-bottom: 0.5em;
+}
+
+.sidenav-button-icon {
+  margin-right: 1em;
+}

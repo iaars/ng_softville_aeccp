@@ -1,5 +1,8 @@
 <mat-toolbar>
   <div id="app-header">
+    <button mat-button class="menu-button" (click)="toggle()" *ngIf="isLoggedIn()">
+      <mat-icon>menu</mat-icon>
+    </button>
     <mat-icon class="app-icon" aria-hidden="false" aria-label="Icono de la aplicación"
       >local_hospital</mat-icon
     >
