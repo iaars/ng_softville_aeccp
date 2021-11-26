@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { AccessInterface } from 'src/app/core/interfaces/access-interface';
-import { UsuarioWrapper } from 'src/app/core/wrappers/UsuarioWrapper';
+import { UsuarioWrapper } from 'src/app/core/wrappers/wrapper.usuario';
 import { UserService } from 'src/app/services/user.service';
 import {
   Firestore,

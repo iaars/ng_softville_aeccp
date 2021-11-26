@@ -8,8 +8,8 @@ import {
 } from '@angular/fire/firestore';
 import {Cita} from 'db/src/cita/cita';
 import {Usuario} from 'db/src/usuario/usuario';
-import {CitaWrapper} from 'src/app/core/wrappers/CitaWrapper';
-import {UsuarioWrapper} from 'src/app/core/wrappers/UsuarioWrapper';
+import {CitaWrapper} from 'src/app/core/wrappers/wrapper.cita';
+import {UsuarioWrapper} from 'src/app/core/wrappers/wrapper.usuario';
 
 @Component({
   selector: 'app-home',
