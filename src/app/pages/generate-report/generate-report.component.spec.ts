@@ -1,6 +1,6 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import {ComponentFixture, TestBed} from '@angular/core/testing';
 
-import { GenerateReportComponent } from './generate-report.component';
+import {GenerateReportComponent} from './generate-report.component';
 
 describe('GenerateReportComponent', () => {
   let component: GenerateReportComponent;
@@ -8,9 +8,8 @@ describe('GenerateReportComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ GenerateReportComponent ]
-    })
-    .compileComponents();
+      declarations: [GenerateReportComponent]
+    }).compileComponents();
   });
 
   beforeEach(() => {

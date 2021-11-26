@@ -6,7 +6,7 @@
         <mat-label>Tipo de usuario</mat-label>
         <mat-select formControlName="userType" (selectionChange)="onSelect($event)">
           <mat-option *ngFor="let userType of userTypes" value="{{ userType }}">
-            {{userType}}
+            {{ userType }}
           </mat-option>
         </mat-select>
       </mat-form-field>
@@ -20,7 +20,6 @@
         </mat-select>
       </mat-form-field>
 
-
       <div class="submitButton">
         <button color="primary" type="submit" mat-raised-button [disabled]="!form.valid">
           Generar reporte
@@ -30,5 +29,4 @@
   </mat-card-content>
 </mat-card>
 
-
-<p>Cantidad de citas de este usuario: {{appointmentsQuantity}}</p>
+<p>Cantidad de citas de este usuario: {{ appointmentsQuantity }}</p>

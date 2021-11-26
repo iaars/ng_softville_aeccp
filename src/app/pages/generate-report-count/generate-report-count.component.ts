@@ -1,18 +1,11 @@
-import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { AccessInterface } from 'src/app/core/interfaces/access-interface';
-import { UsuarioWrapper } from 'src/app/core/wrappers/wrapper.usuario';
-import { UserService } from 'src/app/services/user.service';
-import {
-  Firestore,
-  query,
-  collection,
-  where,
-  getDocs,
-  onSnapshot
-} from '@angular/fire/firestore';
-import { Usuario } from 'db/src/usuario/usuario';
-import { Event } from '@angular/router';
+import {Component, OnInit} from '@angular/core';
+import {FormControl, FormGroup, Validators} from '@angular/forms';
+import {AccessInterface} from 'src/app/core/interfaces/access-interface';
+import {UsuarioWrapper} from 'src/app/core/wrappers/wrapper.usuario';
+import {UserService} from 'src/app/services/user.service';
+import {Firestore, query, collection, where, getDocs, onSnapshot} from '@angular/fire/firestore';
+import {Usuario} from 'db/src/usuario/usuario';
+import {Event} from '@angular/router';
 @Component({
   selector: 'app-generate-report-count',
   templateUrl: './generate-report-count.component.html',
@@ -20,8 +13,8 @@ import { Event } from '@angular/router';
 })
 export class GenerateReportCountComponent extends AccessInterface {
   usersSelected: UsuarioWrapper[] = [];
-  userTypes: string[] = ["Paciente", "Profesional"];
-  paciente = "Paciente";
+  userTypes: string[] = ['Paciente', 'Profesional'];
+  paciente = 'Paciente';
   enableForm = false;
   appointmentsQuantity = 0;
   userDummy: Usuario = {
@@ -31,37 +24,34 @@ export class GenerateReportCountComponent extends AccessInterface {
     tipo: 'Paciente',
     telefono: '',
     correo: ''
-  }
+  };
   userSubmited: UsuarioWrapper = {
     id: '',
     user: this.userDummy
-  }
+  };
   constructor(userService: UserService, private firestore: Firestore) {
     super(
       userService,
       new FormGroup({
         userType: new FormControl('', [Validators.required]),
-        userSelected: new FormControl('', [Validators.required]),
+        userSelected: new FormControl('', [Validators.required])
       })
     );
-
   }
   onSelect(event: any) {
-    if(event.value == 'Paciente'){
+    if (event.value == 'Paciente') {
       this.readPatients();
     }
-    if(event.value == 'Profesional'){
+    if (event.value == 'Profesional') {
       this.readProfessionals();
     }
   }
-  ngOnInit(): void {
-  }
+  ngOnInit(): void {}
 
   onSubmit(): void {
-    if(this.form.get('userType')?.value == 'Paciente'){
+    if (this.form.get('userType')?.value == 'Paciente') {
       this.getAppointmentsPatient(this.form.get('userSelected')?.value);
-    }
-    else{
+    } else {
       this.getAppointmentsProfessional(this.form.get('userSelected')?.value);
     }
   }
@@ -87,7 +77,7 @@ export class GenerateReportCountComponent extends AccessInterface {
     });
     this.enableForm = true;
   }
-  private async readPatients() : Promise<void> {
+  private async readPatients(): Promise<void> {
     this.usersSelected.length = 0;
     const querySnapshotPatient = await getDocs(
       query(collection(this.firestore, 'usuarios'), where('tipo', '==', 'Paciente'))
@@ -101,7 +91,7 @@ export class GenerateReportCountComponent extends AccessInterface {
     });
     this.enableForm = true;
   }
-  private async getAppointmentsProfessional(idUser: string){
+  private async getAppointmentsProfessional(idUser: string) {
     this.appointmentsQuantity = 0;
     const querySnapshotPatient = await getDocs(
       query(collection(this.firestore, 'citas'), where('idProfesional', '==', idUser))
@@ -110,7 +100,7 @@ export class GenerateReportCountComponent extends AccessInterface {
       this.appointmentsQuantity++;
     });
   }
-  private async getAppointmentsPatient(idUser: string){
+  private async getAppointmentsPatient(idUser: string) {
     this.appointmentsQuantity = 0;
     const querySnapshotPatient = await getDocs(
       query(collection(this.firestore, 'citas'), where('idPaciente', '==', idUser))

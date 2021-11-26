@@ -1,15 +1,15 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {UserService} from 'src/app/services/user.service';
-import { AccessInterface } from 'src/app/core/interfaces/access-interface';
-import { UsuarioWrapper } from 'src/app/core/wrappers/wrapper.usuario';
+import {AccessInterface} from 'src/app/core/interfaces/access-interface';
+import {UsuarioWrapper} from 'src/app/core/wrappers/wrapper.usuario';
 import {Firestore, where, query, collection, getDocs} from '@angular/fire/firestore';
-import { Usuario } from 'db/src/usuario/usuario';
-import { Router } from '@angular/router';
-import { CitaWrapper } from 'src/app/core/wrappers/wrapper.cita';
-import { MatTableDataSource } from '@angular/material/table';
-import { onSnapshot } from '@firebase/firestore';
-import { Cita } from 'db/src/cita/cita';
+import {Usuario} from 'db/src/usuario/usuario';
+import {Router} from '@angular/router';
+import {CitaWrapper} from 'src/app/core/wrappers/wrapper.cita';
+import {MatTableDataSource} from '@angular/material/table';
+import {onSnapshot} from '@firebase/firestore';
+import {Cita} from 'db/src/cita/cita';
 
 @Component({
   selector: 'app-generate-report',
@@ -76,22 +76,22 @@ export class GenerateReportComponent extends AccessInterface {
 
     //cada cita encontrada se inserta en citawrappers para imprimirse
     querySnapshotPatient.forEach((citaDoc) => {
-        const cita = citaDoc.data() as Cita;
-        const wrapperCita: CitaWrapper = {
-          id: citaDoc.id,
-          cita: cita,
-          paciente: this.getUserWrapper(cita.idPaciente),
-          profesional: this.getUserWrapper(cita.idProfesional),
-          secretaria: this.getUserWrapper(cita.idSecretaria),
-          fechaHoraFormateada: new Date(cita.fechaHora).toLocaleString('es-ES')
-        };
+      const cita = citaDoc.data() as Cita;
+      const wrapperCita: CitaWrapper = {
+        id: citaDoc.id,
+        cita: cita,
+        paciente: this.getUserWrapper(cita.idPaciente),
+        profesional: this.getUserWrapper(cita.idProfesional),
+        secretaria: this.getUserWrapper(cita.idSecretaria),
+        fechaHoraFormateada: new Date(cita.fechaHora).toLocaleString('es-ES')
+      };
       this.citaWrappers.push(wrapperCita);
     });
     this.citaWrappers.sort((a, b) => {
       return b.cita.fechaHora - a.cita.fechaHora;
     });
     console.log(this.citaWrappers);
-    console.log("--------------------------------");
+    console.log('--------------------------------');
     this.dataSource = new MatTableDataSource<CitaWrapper>(this.citaWrappers);
   }
   private getUserWrapper(id: string): UsuarioWrapper | undefined {
