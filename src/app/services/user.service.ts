@@ -26,7 +26,6 @@ export class UserService {
       await signOut(this.auth);
       canLogOut = true;
       console.log('SE PUDO HACER LOGOUT');
-      this.router.navigate(['/login']);
     } catch (error) {
       console.error('ERROR DE LOGOUT');
     }
