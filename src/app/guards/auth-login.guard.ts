@@ -14,7 +14,7 @@ export class AuthLoginGuard implements CanActivate {
       this.auth.onAuthStateChanged((user) => {
         if (user) {
           resolve(false);
-          this.router.navigate(['/home']);
+          this.router.navigate(['/']);
         } else {
           resolve(true);
         }
