@@ -5,6 +5,7 @@ import {Cita} from 'db/src/cita/cita';
 import {Usuario} from 'db/src/usuario/usuario';
 import {CitaWrapper} from 'src/app/core/wrappers/wrapper.cita';
 import {UsuarioWrapper} from 'src/app/core/wrappers/wrapper.usuario';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-home',
@@ -22,7 +23,7 @@ export class HomeComponent implements OnInit {
   citaWrappers: CitaWrapper[] = [];
   usuarioWrappers: UsuarioWrapper[] = [];
 
-  constructor(private firestore: Firestore) {}
+  constructor(private firestore: Firestore, private router: Router) {}
 
   ngOnInit(): void {
     this.readUsers();
@@ -77,5 +78,10 @@ export class HomeComponent implements OnInit {
     });
 
     return usuarioWrapper;
+  }
+
+  // ! Las pruebas para este método son de UI
+  public createAppointment(): void {
+    this.router.navigate(['/create-appointment']);
   }
 }

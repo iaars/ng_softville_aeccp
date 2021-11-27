@@ -19,11 +19,6 @@ const routes: Routes = [
     canActivate: [AuthGuard]
   },
   {
-    path: '',
-    component: HomeComponent,
-    canActivate: [AuthGuard]
-  },
-  {
     path: 'create-appointment',
     component: CreateAppointmentComponent,
     canActivate: [AuthGuard]

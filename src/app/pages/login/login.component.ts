@@ -1,4 +1,4 @@
-import {Component} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {MatDialog} from '@angular/material/dialog';
 import {Router} from '@angular/router';
@@ -12,7 +12,7 @@ import {AccessInterface} from '../../core/interfaces/access-interface';
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css']
 })
-export class LoginComponent extends AccessInterface {
+export class LoginComponent extends AccessInterface implements OnInit {
   constructor(private modalService: MatDialog, userService: UserService, private router: Router) {
     super(
       userService,
@@ -29,6 +29,15 @@ export class LoginComponent extends AccessInterface {
         ])
       })
     );
+  }
+
+  ngOnInit(): void {
+    if (!localStorage.getItem('reload')) {
+      localStorage.setItem('reload', 'no reload');
+      location.reload();
+    } else {
+      localStorage.removeItem('reload');
+    }
   }
 
   onSubmit(): void {
@@ -49,7 +58,7 @@ export class LoginComponent extends AccessInterface {
 
   // ! Las pruebas para este método son de UI
   protected onSuccess(): void {
-    this.router.navigate(['/']);
+    this.router.navigate(['/home']);
   }
 
   // ! Las pruebas para este método son de UI
