@@ -8,6 +8,7 @@ import {UsuarioWrapper} from 'src/app/core/wrappers/wrapper.usuario';
 import {Cita} from 'db/src/cita/cita';
 import {Router} from '@angular/router';
 import {DateAdapter} from '@angular/material/core';
+import {Location} from '@angular/common';
 
 @Component({
   selector: 'app-create-appointment',
@@ -35,6 +36,7 @@ export class CreateAppointmentComponent extends AccessInterface {
     userService: UserService,
     private firestore: Firestore,
     private router: Router,
+    private location: Location,
     private dateAdapter: DateAdapter<Date>
   ) {
     super(
@@ -107,5 +109,9 @@ export class CreateAppointmentComponent extends AccessInterface {
         user: professional.data() as Usuario
       });
     });
+  }
+
+  goBack(): void {
+    this.location.back();
   }
 }

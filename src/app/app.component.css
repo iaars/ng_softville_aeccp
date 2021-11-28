@@ -41,3 +41,7 @@ mat-sidenav-content {
 .sidenav-button-icon {
   margin-right: 1em;
 }
+
+.page-container {
+  width: 75%;
+}

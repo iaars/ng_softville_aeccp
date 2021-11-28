@@ -1,8 +1,8 @@
 <mat-card>
-  <mat-card-title>Reporte de citas de paciente</mat-card-title>
+  <mat-card-title class="report-title">Reporte de citas de paciente</mat-card-title>
   <mat-card-content>
-    <form [formGroup]="form" (ngSubmit)="onSubmit()">
-      <mat-form-field appearance="fill">
+    <form class="dropdown-and-button-container" [formGroup]="form" (ngSubmit)="onSubmit()">
+      <mat-form-field class="dropdown-with-button" appearance="fill">
         <mat-label>Paciente</mat-label>
         <mat-select formControlName="patient">
           <mat-option *ngFor="let patient of patients" value="{{ patient.id }}">
@@ -11,44 +11,51 @@
         </mat-select>
       </mat-form-field>
 
-      <div class="submitButton">
-        <button color="primary" type="submit" mat-raised-button [disabled]="!form.valid">
-          Generar reporte
-        </button>
-      </div>
+      <button
+        class="button-with-dropdown"
+        color="primary"
+        type="submit"
+        mat-raised-button
+        [disabled]="!form.valid"
+      >
+        Generar reporte
+      </button>
     </form>
+
+    <h3>Resultados:</h3>
+    <table id="tags-table" mat-table [dataSource]="dataSource">
+      <ng-container matColumnDef="nombrePaciente">
+        <th scope="col" class="name-th" mat-header-cell *matHeaderCellDef>Paciente</th>
+        <td mat-cell *matCellDef="let element">
+          {{ element.paciente.user.nombre }} {{ element.paciente.user.apellidos }}
+        </td>
+      </ng-container>
+
+      <ng-container matColumnDef="fechaHora">
+        <th scope="col" class="name-th" mat-header-cell *matHeaderCellDef>Fecha y hora</th>
+        <td mat-cell *matCellDef="let element">{{ element.fechaHoraFormateada }}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="nombreProfesional">
+        <th scope="col" class="name-th" mat-header-cell *matHeaderCellDef>
+          Profesional que atiende
+        </th>
+        <td mat-cell *matCellDef="let element">
+          {{ element.profesional.user.nombre }} {{ element.profesional.user.apellidos }}
+        </td>
+      </ng-container>
+
+      <ng-container matColumnDef="nombreSecretaria">
+        <th scope="col" class="name-th" mat-header-cell *matHeaderCellDef>
+          Secretaria que registró
+        </th>
+        <td mat-cell *matCellDef="let element">
+          {{ element.secretaria.user.nombre }} {{ element.secretaria.user.apellidos }}
+        </td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+    </table>
   </mat-card-content>
 </mat-card>
-
-<div class="mat-elevation-z8">
-  <table id="tags-table" mat-table [dataSource]="dataSource">
-    <ng-container matColumnDef="nombrePaciente">
-      <th scope="col" class="name-th" mat-header-cell *matHeaderCellDef>Paciente</th>
-      <td mat-cell *matCellDef="let element">
-        {{ element.paciente.user.nombre }} {{ element.paciente.user.apellidos }}
-      </td>
-    </ng-container>
-
-    <ng-container matColumnDef="fechaHora">
-      <th scope="col" class="name-th" mat-header-cell *matHeaderCellDef>Fecha y hora</th>
-      <td mat-cell *matCellDef="let element">{{ element.fechaHoraFormateada }}</td>
-    </ng-container>
-
-    <ng-container matColumnDef="nombreProfesional">
-      <th scope="col" class="name-th" mat-header-cell *matHeaderCellDef>Profesional que atiende</th>
-      <td mat-cell *matCellDef="let element">
-        {{ element.profesional.user.nombre }} {{ element.profesional.user.apellidos }}
-      </td>
-    </ng-container>
-
-    <ng-container matColumnDef="nombreSecretaria">
-      <th scope="col" class="name-th" mat-header-cell *matHeaderCellDef>Secretaria que registró</th>
-      <td mat-cell *matCellDef="let element">
-        {{ element.secretaria.user.nombre }} {{ element.secretaria.user.apellidos }}
-      </td>
-    </ng-container>
-
-    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-    <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
-  </table>
-</div>

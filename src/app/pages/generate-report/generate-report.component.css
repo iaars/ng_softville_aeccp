@@ -1,9 +1,4 @@
-.demo-button-container {
-  margin: 2em;
-  padding: 5px;
-  display: flex;
-  justify-content: center;
-}
+@import url('../../shared/styles/reports.css');
 
 #tags-table {
   display: table;

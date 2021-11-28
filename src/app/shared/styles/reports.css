@@ -1,0 +1,33 @@
+.report {
+  margin: 1em;
+}
+
+.report-title {
+  margin-bottom: 1em;
+}
+
+.dropdown-and-button-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.dropdown-with-button {
+  width: 75%;
+}
+
+.button-with-dropdown {
+  margin-bottom: 1em;
+}
+
+.dropdown {
+  width: 100%;
+}
+
+.back-button {
+  margin: 1em;
+}
+
+.submit-button {
+  margin: 1em auto;
+}
