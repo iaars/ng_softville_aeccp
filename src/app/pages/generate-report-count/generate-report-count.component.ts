@@ -1,11 +1,11 @@
-import {Component, OnInit} from '@angular/core';
+import {Component} from '@angular/core';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {AccessInterface} from 'src/app/core/interfaces/access-interface';
 import {UsuarioWrapper} from 'src/app/core/wrappers/wrapper.usuario';
 import {UserService} from 'src/app/services/user.service';
-import {Firestore, query, collection, where, getDocs, onSnapshot} from '@angular/fire/firestore';
+import {Firestore, query, collection, where, getDocs} from '@angular/fire/firestore';
 import {Usuario} from 'db/src/usuario/usuario';
-import {Event} from '@angular/router';
+
 @Component({
   selector: 'app-generate-report-count',
   templateUrl: './generate-report-count.component.html',
@@ -25,10 +25,12 @@ export class GenerateReportCountComponent extends AccessInterface {
     telefono: '',
     correo: ''
   };
+
   userSubmited: UsuarioWrapper = {
     id: '',
     user: this.userDummy
   };
+
   constructor(userService: UserService, private firestore: Firestore) {
     super(
       userService,
@@ -38,6 +40,7 @@ export class GenerateReportCountComponent extends AccessInterface {
       })
     );
   }
+
   onSelect(event: any) {
     if (event.value == 'Paciente') {
       this.readPatients();
@@ -46,7 +49,6 @@ export class GenerateReportCountComponent extends AccessInterface {
       this.readProfessionals();
     }
   }
-  ngOnInit(): void {}
 
   onSubmit(): void {
     if (this.form.get('userType')?.value == 'Paciente') {
@@ -63,6 +65,7 @@ export class GenerateReportCountComponent extends AccessInterface {
   protected onInvalidData(): void {
     throw new Error('Method not implemented.');
   }
+
   private async readProfessionals(): Promise<void> {
     this.usersSelected.length = 0;
     const querySnapshotPatient = await getDocs(
@@ -77,6 +80,7 @@ export class GenerateReportCountComponent extends AccessInterface {
     });
     this.enableForm = true;
   }
+
   private async readPatients(): Promise<void> {
     this.usersSelected.length = 0;
     const querySnapshotPatient = await getDocs(
@@ -91,6 +95,7 @@ export class GenerateReportCountComponent extends AccessInterface {
     });
     this.enableForm = true;
   }
+
   private async getAppointmentsProfessional(idUser: string) {
     this.appointmentsQuantity = 0;
     const querySnapshotPatient = await getDocs(
@@ -100,6 +105,7 @@ export class GenerateReportCountComponent extends AccessInterface {
       this.appointmentsQuantity++;
     });
   }
+  
   private async getAppointmentsPatient(idUser: string) {
     this.appointmentsQuantity = 0;
     const querySnapshotPatient = await getDocs(

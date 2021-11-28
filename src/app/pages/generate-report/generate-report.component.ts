@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component} from '@angular/core';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {UserService} from 'src/app/services/user.service';
 import {AccessInterface} from 'src/app/core/interfaces/access-interface';
@@ -55,6 +55,7 @@ export class GenerateReportComponent extends AccessInterface {
   protected onInvalidData(): void {
     throw new Error('Method not implemented.');
   }
+
   private async getUsers(): Promise<void> {
     const querySnapshotPatient = await getDocs(
       query(collection(this.firestore, 'usuarios'), where('tipo', '==', 'Paciente'))
@@ -91,9 +92,9 @@ export class GenerateReportComponent extends AccessInterface {
       return b.cita.fechaHora - a.cita.fechaHora;
     });
     console.log(this.citaWrappers);
-    console.log('--------------------------------');
     this.dataSource = new MatTableDataSource<CitaWrapper>(this.citaWrappers);
   }
+
   private getUserWrapper(id: string): UsuarioWrapper | undefined {
     let usuarioWrapper: UsuarioWrapper | undefined = undefined;
 
@@ -107,6 +108,7 @@ export class GenerateReportComponent extends AccessInterface {
 
     return usuarioWrapper;
   }
+
   private readUsers(): void {
     onSnapshot(query(collection(this.firestore, 'usuarios')), (snapshot) => {
       this.usuarioWrappers.length = 0;
