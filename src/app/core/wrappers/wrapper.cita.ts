@@ -1,5 +1,5 @@
 import {Cita} from 'db/src/cita/cita';
-import {UsuarioWrapper} from './UsuarioWrapper';
+import {UsuarioWrapper} from './wrapper.usuario';
 
 export interface CitaWrapper {
   id: string;

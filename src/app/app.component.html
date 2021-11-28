@@ -1,2 +1,38 @@
-<app-navbar></app-navbar>
-<router-outlet></router-outlet>
+<app-navbar [sidenav]="sidenav"></app-navbar>
+<mat-sidenav-container>
+  <mat-sidenav #sidenav mode="over" [(opened)]="opened">
+    <button
+      class="sidenav-button"
+      mat-button
+      aria-hidden="false"
+      aria-label="Icono del botón de control de citas"
+      (click)="goTo('/home')"
+    >
+      <mat-icon class="sidenav-button-icon">home</mat-icon>Control de citas
+    </button>
+    <button
+      class="sidenav-button"
+      mat-button
+      aria-label="Icono del botón de reporte de citas por paciente"
+      (click)="goTo('generate-report')"
+    >
+      <mat-icon class="sidenav-button-icon">summarize</mat-icon>Reporte de citas por paciente
+    </button>
+    <button
+      class="sidenav-button"
+      mat-button
+      aria-label="Icono del botón de reporte de cantidad de citas por persona"
+      (click)="goTo('generate-report-count')"
+    >
+      <mat-icon class="sidenav-button-icon">summarize</mat-icon>Reporte de cantidad de citas por
+      persona
+    </button>
+  </mat-sidenav>
+
+  <mat-sidenav-content>
+    <div class="container">
+      <router-outlet></router-outlet>
+    </div>
+  </mat-sidenav-content>
+</mat-sidenav-container>
+<app-footer></app-footer>

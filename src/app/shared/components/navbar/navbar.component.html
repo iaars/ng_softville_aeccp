@@ -1,4 +1,17 @@
 <mat-toolbar>
-  <h2>Control de citas de pacientes</h2>
-  <button *ngIf="isLoggedIn()" mat-button (click)="logout()">Cerrar sesión</button>
+  <div id="app-header">
+    <button mat-button class="menu-button" (click)="toggle()" *ngIf="isLoggedIn()">
+      <mat-icon>menu</mat-icon>
+    </button>
+    <mat-icon class="app-icon" aria-hidden="false" aria-label="Icono de la aplicación"
+      >local_hospital</mat-icon
+    >
+    <h2>Control de citas de pacientes</h2>
+  </div>
+  <button id="logout-button" *ngIf="isLoggedIn()" mat-button (click)="logout()">
+    <mat-icon class="logout-icon" aria-hidden="false" aria-label="Icono de la aplicación"
+      >logout</mat-icon
+    >
+    Cerrar sesión
+  </button>
 </mat-toolbar>

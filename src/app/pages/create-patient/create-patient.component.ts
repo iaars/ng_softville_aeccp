@@ -4,6 +4,7 @@ import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {MatDialog} from '@angular/material/dialog';
 import {Usuario} from 'db/src/usuario/usuario';
 import {Modal} from 'src/app/shared/components/modals/modal/modal';
+import {Location} from '@angular/common';
 
 @Component({
   selector: 'app-create-patient',
@@ -11,7 +12,11 @@ import {Modal} from 'src/app/shared/components/modals/modal/modal';
   styleUrls: ['./create-patient.component.css']
 })
 export class CreatePatientComponent implements OnInit {
-  constructor(private firestore: Firestore, private modalService: MatDialog) {}
+  constructor(
+    private firestore: Firestore,
+    private modalService: MatDialog,
+    private location: Location
+  ) {}
 
   ngOnInit(): void {}
 
@@ -84,5 +89,9 @@ export class CreatePatientComponent implements OnInit {
       'Paciente creado',
       'Se ha creado al usuario exitosamente.'
     );
+  }
+
+  goBack(): void {
+    this.location.back();
   }
 }
