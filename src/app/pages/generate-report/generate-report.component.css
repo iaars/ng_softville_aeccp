@@ -18,3 +18,7 @@
 .mat-header-cell {
   text-align: center;
 }
+
+.table-caption {
+  display: none;
+}

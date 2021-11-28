@@ -11,7 +11,10 @@ import {MatSidenav} from '@angular/material/sidenav';
 export class NavbarComponent implements OnInit {
   @Input() sidenav!: MatSidenav;
 
-  constructor(private userService: UserService, private router: Router) {}
+  constructor(
+    private userService: UserService,
+    private router: Router
+  ) {}
 
   ngOnInit(): void {}
 
