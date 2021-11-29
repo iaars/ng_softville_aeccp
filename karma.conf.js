@@ -27,7 +27,15 @@ module.exports = function (config) {
     coverageReporter: {
       dir: require('path').join(__dirname, './coverage/softville-aeccp'),
       subdir: '.',
-      reporters: [{type: 'html'}, {type: 'text-summary'}]
+      reporters: [{type: 'html'}, {type: 'text-summary'}],
+      check: {
+        global: {
+          statements: 40,
+          branches: 0,
+          functions: 0,
+          lines: 0
+        }
+      }
     },
     reporters: ['progress', 'kjhtml'],
     port: 9876,

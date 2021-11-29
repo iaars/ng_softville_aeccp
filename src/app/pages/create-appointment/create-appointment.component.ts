@@ -87,7 +87,7 @@ export class CreateAppointmentComponent extends AccessInterface {
     this.router.navigate(['/create-patient']);
   }
 
-  private async getUsers(): Promise<void> {
+  async getUsers(): Promise<void> {
     const querySnapshotPatient = await getDocs(
       query(collection(this.firestore, 'usuarios'), where('tipo', '==', 'Paciente'))
     );
