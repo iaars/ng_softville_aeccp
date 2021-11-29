@@ -52,9 +52,9 @@ export class GenerateReportCountComponent extends AccessInterface {
 
   onSubmit(): void {
     if (this.form.get('userType')?.value == 'Paciente') {
-      this.getAppointmentsPatient(this.form.get('userSelected')?.value);
+      this.getAppointments('idProfesional', this.form.get('userSelected')?.value);
     } else {
-      this.getAppointmentsProfessional(this.form.get('userSelected')?.value);
+      this.getAppointments('idPaciente', this.form.get('userSelected')?.value);
     }
   }
 
@@ -66,7 +66,7 @@ export class GenerateReportCountComponent extends AccessInterface {
     throw new Error('Method not implemented.');
   }
 
-  private async readProfessionals(): Promise<void> {
+  async readProfessionals(): Promise<void> {
     this.usersSelected.length = 0;
     const querySnapshotPatient = await getDocs(
       query(collection(this.firestore, 'usuarios'), where('tipo', '==', 'Profesional'))
@@ -81,7 +81,7 @@ export class GenerateReportCountComponent extends AccessInterface {
     this.enableForm = true;
   }
 
-  private async readPatients(): Promise<void> {
+  async readPatients(): Promise<void> {
     this.usersSelected.length = 0;
     const querySnapshotPatient = await getDocs(
       query(collection(this.firestore, 'usuarios'), where('tipo', '==', 'Paciente'))
@@ -96,22 +96,13 @@ export class GenerateReportCountComponent extends AccessInterface {
     this.enableForm = true;
   }
 
-  private async getAppointmentsProfessional(idUser: string) {
+  async getAppointments(campo: string, idUser: string): Promise<void> {
     this.appointmentsQuantity = 0;
     const querySnapshotPatient = await getDocs(
-      query(collection(this.firestore, 'citas'), where('idProfesional', '==', idUser))
+      query(collection(this.firestore, 'citas'), where(campo, '==', idUser))
     );
-    querySnapshotPatient.forEach((professional) => {
-      this.appointmentsQuantity++;
-    });
-  }
-  
-  private async getAppointmentsPatient(idUser: string) {
-    this.appointmentsQuantity = 0;
-    const querySnapshotPatient = await getDocs(
-      query(collection(this.firestore, 'citas'), where('idPaciente', '==', idUser))
-    );
-    querySnapshotPatient.forEach((professional) => {
+
+    querySnapshotPatient.forEach(() => {
       this.appointmentsQuantity++;
     });
   }

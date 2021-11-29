@@ -42,7 +42,7 @@ export class CreatePatientComponent implements OnInit {
       correo: this.form.get('email')?.value
     };
 
-    if (await this.validData(patient)) {
+    if (!(await this.doesPacientExist(patient))) {
       try {
         await addDoc(collection(this.firestore, 'usuarios'), patient);
         this.onSuccess();
@@ -54,7 +54,7 @@ export class CreatePatientComponent implements OnInit {
     }
   }
 
-  private async validData(patient: Usuario): Promise<boolean> {
+  async doesPacientExist(patient: Usuario): Promise<boolean> {
     const usersSnapshot = await getDocs(query(collection(this.firestore, 'usuarios')));
     let isValid = true;
 
@@ -72,7 +72,7 @@ export class CreatePatientComponent implements OnInit {
       });
     }
 
-    return isValid;
+    return !isValid;
   }
 
   private onError(): void {

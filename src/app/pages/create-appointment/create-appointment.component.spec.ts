@@ -24,11 +24,17 @@ describe('CreateAppointmentComponent', () => {
     expect(component).toBeTruthy();
   });
 
-  it('should fill the lists with at least one element', async () => {
+  it('should fill the list of patients with at least one element', async () => {
     // esta prueba asume existencia de datos en la colección de 'usuarios' en la db
     // lo ideal es tener un mock que asegure que hay datos en la colección
     await component.getUsers();
     expect(component.patients[0]).toBeTruthy();
+  });
+
+  it('should fill the list of professionals with at least one element', async () => {
+    // esta prueba asume existencia de datos en la colección de 'usuarios' en la db
+    // lo ideal es tener un mock que asegure que hay datos en la colección
+    await component.getUsers();
     expect(component.professionals[0]).toBeTruthy();
   });
 });
