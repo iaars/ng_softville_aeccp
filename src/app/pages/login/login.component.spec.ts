@@ -20,7 +20,7 @@ describe('LoginComponent', () => {
     fixture.detectChanges();
   });
 
-  // !TODO: prueba comentada por error que se intentará solventar después
+  // !TODO: prueba comentada por error que no se puede solventar en esta iteración
   // it('should create', () => {
   //   expect(component).toBeTruthy();
   // });

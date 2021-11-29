@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {MatTableDataSource} from '@angular/material/table';
-import {Firestore, query, collection, onSnapshot} from '@angular/fire/firestore';
+import {Firestore, query, collection, onSnapshot, getDocs} from '@angular/fire/firestore';
 import {Cita} from 'db/src/cita/cita';
 import {Usuario} from 'db/src/usuario/usuario';
 import {CitaWrapper} from 'src/app/core/wrappers/wrapper.cita';
@@ -66,7 +66,17 @@ export class HomeComponent implements OnInit {
     });
   }
 
-  private getUserWrapper(id: string): UsuarioWrapper | undefined {
+  async readUsersAsync(): Promise<void> {
+    const queryUsers = await getDocs(query(collection(this.firestore, 'usuarios')));
+    queryUsers.forEach((usuarioDoc) => {
+      this.usuarioWrappers.push({
+        id: usuarioDoc.id,
+        user: usuarioDoc.data() as Usuario
+      });
+    });
+  }
+
+  getUserWrapper(id: string): UsuarioWrapper | undefined {
     let usuarioWrapper: UsuarioWrapper | undefined = undefined;
 
     this.usuarioWrappers.every((uw) => {

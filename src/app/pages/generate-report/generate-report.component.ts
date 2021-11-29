@@ -5,7 +5,6 @@ import {AccessInterface} from 'src/app/core/interfaces/access-interface';
 import {UsuarioWrapper} from 'src/app/core/wrappers/wrapper.usuario';
 import {Firestore, where, query, collection, getDocs} from '@angular/fire/firestore';
 import {Usuario} from 'db/src/usuario/usuario';
-import {Router} from '@angular/router';
 import {CitaWrapper} from 'src/app/core/wrappers/wrapper.cita';
 import {MatTableDataSource} from '@angular/material/table';
 import {onSnapshot} from '@firebase/firestore';
@@ -27,7 +26,7 @@ export class GenerateReportComponent extends AccessInterface {
   dataSource = new MatTableDataSource<CitaWrapper>();
   citaWrappers: CitaWrapper[] = [];
   usuarioWrappers: UsuarioWrapper[] = [];
-  constructor(userService: UserService, private firestore: Firestore, private router: Router) {
+  constructor(userService: UserService, private firestore: Firestore) {
     super(
       userService,
       new FormGroup({
@@ -56,7 +55,7 @@ export class GenerateReportComponent extends AccessInterface {
     throw new Error('Method not implemented.');
   }
 
-  private async getUsers(): Promise<void> {
+  async getUsers(): Promise<void> {
     const querySnapshotPatient = await getDocs(
       query(collection(this.firestore, 'usuarios'), where('tipo', '==', 'Paciente'))
     );
@@ -69,7 +68,7 @@ export class GenerateReportComponent extends AccessInterface {
     });
   }
 
-  protected async getReportData(patientId: string): Promise<void> {
+  async getReportData(patientId: string): Promise<void> {
     //query para filtrar las citas con el patientId
     const querySnapshotPatient = await getDocs(
       query(collection(this.firestore, 'citas'), where('idPaciente', '==', patientId))
@@ -91,11 +90,36 @@ export class GenerateReportComponent extends AccessInterface {
     this.citaWrappers.sort((a, b) => {
       return b.cita.fechaHora - a.cita.fechaHora;
     });
-    console.log(this.citaWrappers);
+
     this.dataSource = new MatTableDataSource<CitaWrapper>(this.citaWrappers);
   }
 
-  private getUserWrapper(id: string): UsuarioWrapper | undefined {
+  // ! no puede probarse porque este método solo se ejecuta tras eventos en firebase
+  readUsers(): void {
+    onSnapshot(query(collection(this.firestore, 'usuarios')), (snapshot) => {
+      this.usuarioWrappers.length = 0;
+      snapshot.forEach((usuarioDoc) => {
+        this.usuarioWrappers.push({
+          id: usuarioDoc.id,
+          user: usuarioDoc.data() as Usuario
+        });
+      });
+    });
+  }
+
+  async readUsersAsync(): Promise<void> {
+    const queryUsers = await getDocs(
+      query(collection(this.firestore, 'usuarios'))
+    );
+    queryUsers.forEach((usuarioDoc) => {
+      this.usuarioWrappers.push({
+        id: usuarioDoc.id,
+        user: usuarioDoc.data() as Usuario
+      });
+    });
+  }
+
+  getUserWrapper(id: string): UsuarioWrapper | undefined {
     let usuarioWrapper: UsuarioWrapper | undefined = undefined;
 
     this.usuarioWrappers.every((uw) => {
@@ -107,17 +131,5 @@ export class GenerateReportComponent extends AccessInterface {
     });
 
     return usuarioWrapper;
-  }
-
-  private readUsers(): void {
-    onSnapshot(query(collection(this.firestore, 'usuarios')), (snapshot) => {
-      this.usuarioWrappers.length = 0;
-      snapshot.forEach((usuarioDoc) => {
-        this.usuarioWrappers.push({
-          id: usuarioDoc.id,
-          user: usuarioDoc.data() as Usuario
-        });
-      });
-    });
   }
 }
