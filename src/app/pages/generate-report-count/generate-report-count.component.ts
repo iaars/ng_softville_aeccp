@@ -48,13 +48,14 @@ export class GenerateReportCountComponent extends AccessInterface {
     if (event.value == 'Profesional') {
       this.readProfessionals();
     }
+    this.appointmentsQuantity = 0;
   }
 
   onSubmit(): void {
     if (this.form.get('userType')?.value == 'Paciente') {
-      this.getAppointments('idProfesional', this.form.get('userSelected')?.value);
-    } else {
       this.getAppointments('idPaciente', this.form.get('userSelected')?.value);
+    } else {
+      this.getAppointments('idProfesional', this.form.get('userSelected')?.value);
     }
   }
 
