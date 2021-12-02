@@ -1,8 +1,42 @@
-<div class="demo-button-container">
-  <button mat-raised-button color="primary" class="demo-button" (click)="createAppointment()">
-    <mat-icon>add</mat-icon>Crear cita
-  </button>
-</div>
+<mat-card class="report">
+  <div class="demo-button-container">
+    <button mat-raised-button color="primary" class="demo-button" (click)="createAppointment()">
+      <mat-icon>add</mat-icon>Crear cita
+    </button>
+  </div>
+  <mat-card-content>
+    <form [formGroup]="form" (ngSubmit)="onSubmit()">
+
+      <mat-form-field class="dropdown" appearance="fill">
+        <mat-label>Desde</mat-label>
+        <input readonly formControlName="since" matInput [matDatepicker]="pickerSince" />
+        <mat-datepicker-toggle matSuffix [for]="pickerSince"></mat-datepicker-toggle>
+        <mat-datepicker #pickerSince disabled="false"></mat-datepicker>
+      </mat-form-field>
+
+      <mat-form-field class="dropdown" appearance="fill">
+        <mat-label>Hasta</mat-label>
+        <input readonly formControlName="to" matInput [matDatepicker]="pickerTo" />
+        <mat-datepicker-toggle matSuffix [for]="pickerTo"></mat-datepicker-toggle>
+        <mat-datepicker #pickerTo disabled="false"></mat-datepicker>
+      </mat-form-field>
+
+      <button
+        class="submit-button"
+        color="primary"
+        type="submit"
+        mat-raised-button
+        [disabled]="!form.valid"
+      >
+        Aplicar Filtro
+    </button>
+    </form>
+    <button mat-raised-button color="primary" class="demo-button" (click)="removeFilter()">
+      Remover Filtro
+    </button>
+  </mat-card-content>
+</mat-card>
+
 
 <div class="mat-elevation-z8">
   <table id="tags-table" mat-table [dataSource]="dataSource">

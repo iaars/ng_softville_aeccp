@@ -9,7 +9,8 @@ import {Cita} from 'db/src/cita/cita';
 import {Router} from '@angular/router';
 import {DateAdapter} from '@angular/material/core';
 import {Location} from '@angular/common';
-
+import {MatDialog} from '@angular/material/dialog';
+import {Modal} from 'src/app/shared/components/modals/modal/modal';
 @Component({
   selector: 'app-create-appointment',
   templateUrl: './create-appointment.component.html',
@@ -37,7 +38,8 @@ export class CreateAppointmentComponent extends AccessInterface {
     private firestore: Firestore,
     private router: Router,
     private location: Location,
-    private dateAdapter: DateAdapter<Date>
+    private dateAdapter: DateAdapter<Date>,
+    private modalService: MatDialog
   ) {
     super(
       userService,
@@ -55,7 +57,7 @@ export class CreateAppointmentComponent extends AccessInterface {
     this.getUsers();
   }
 
-  onSubmit(): void {
+  async onSubmit(): Promise<void> {
     if (!this.form.valid) {
       return;
     }
@@ -64,19 +66,44 @@ export class CreateAppointmentComponent extends AccessInterface {
     const str = this.form.get('time')?.value;
     const timeSplitted = str.split(':');
     date.setHours(parseInt(timeSplitted[0]), parseInt(timeSplitted[1]));
-    const cita: Cita = {
-      fechaHora: date.getTime(),
-      idSecretaria: 'xLK9LdQOhqDPU4wQYoWx',
-      idPaciente: this.form.get('patient')?.value,
-      idProfesional: this.form.get('professional')?.value
-    };
-
-    addDoc(collection(this.firestore, 'citas'), cita);
-    this.router.navigate(['/home']);
+    let cantCitas = 0;
+    const querySnapshotAppointment = await getDocs(
+      query(collection(this.firestore, 'citas'), where('fechaHora', '==', date.getTime()))
+    );
+    querySnapshotAppointment.forEach((patient) => {
+      cantCitas++;
+    });
+    if(cantCitas > 0){
+      //si hay citas el mismo dia a la misma hora
+      this.onError();
+    }
+    else{
+      //se agrega la cita
+      const cita: Cita = {
+        fechaHora: date.getTime(),
+        idSecretaria: 'xLK9LdQOhqDPU4wQYoWx',
+        idPaciente: this.form.get('patient')?.value,
+        idProfesional: this.form.get('professional')?.value
+      };
+      addDoc(collection(this.firestore, 'citas'), cita);
+      this.onSuccess();
+      this.router.navigate(['/home']);
+    }
+  }
+  onError(): void {
+    Modal.showInfoModal(
+      this.modalService,
+      'No fue posible agendar la cita',
+      'El paciente ya tiene una cita en la fecha y hora seleccionadas.'
+    );
   }
 
-  protected onSuccess(): void {
-    throw new Error('Method not implemented.');
+   onSuccess() {
+    Modal.showInfoModal(
+      this.modalService,
+      'Cita agendada',
+      'Se ha agendado la cita exitosamente.'
+    );
   }
 
   protected onInvalidData(): void {

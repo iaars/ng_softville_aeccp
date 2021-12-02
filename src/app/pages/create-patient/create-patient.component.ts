@@ -21,10 +21,10 @@ export class CreatePatientComponent implements OnInit {
   ngOnInit(): void {}
 
   form: FormGroup = new FormGroup({
-    id: new FormControl('', [Validators.required]),
-    name: new FormControl('', [Validators.required]),
-    lastName: new FormControl('', [Validators.required]),
-    phoneNumber: new FormControl('', [Validators.required]),
+    id: new FormControl('', [Validators.required,Validators.pattern('^[a-zA-Z0-9 ]*$')]),
+    name: new FormControl('', [Validators.required, Validators.pattern('^[a-zA-Z ]*$')]),
+    lastName: new FormControl('', [Validators.required, Validators.pattern('^[a-zA-Z ]*$')]),
+    phoneNumber: new FormControl('', [Validators.required, Validators.pattern('^[0-9]*$')]),
     email: new FormControl('', [Validators.required, Validators.email])
   });
 
