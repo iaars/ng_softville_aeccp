@@ -21,9 +21,15 @@ export class CreatePatientComponent implements OnInit {
   ngOnInit(): void {}
 
   form: FormGroup = new FormGroup({
-    id: new FormControl('', [Validators.required,Validators.pattern('^[a-zA-Z0-9 ]*$')]),
-    name: new FormControl('', [Validators.required, Validators.pattern('^[a-zA-Z ]*$')]),
-    lastName: new FormControl('', [Validators.required, Validators.pattern('^[a-zA-Z ]*$')]),
+    id: new FormControl('', [Validators.required, Validators.pattern('^[a-zA-Z0-9 ]*$')]),
+    name: new FormControl('', [
+      Validators.required,
+      Validators.pattern('^[a-zA-ZÀ-ÿ\u00f1\u00d1 ]*$')
+    ]),
+    lastName: new FormControl('', [
+      Validators.required,
+      Validators.pattern('^[a-zA-ZÀ-ÿ\u00f1\u00d1 ]*$')
+    ]),
     phoneNumber: new FormControl('', [Validators.required, Validators.pattern('^[0-9]*$')]),
     email: new FormControl('', [Validators.required, Validators.email])
   });
@@ -62,11 +68,15 @@ export class CreatePatientComponent implements OnInit {
       usersSnapshot.forEach((document) => {
         const user = document.data() as Usuario;
         const sameId = user.identificacion == patient.identificacion;
+        /*
         const sameName = user.nombre == patient.nombre;
         const sameLastName = user.apellidos == patient.apellidos;
         const samePhoneNumber = user.telefono == patient.telefono;
         const sameEmail = user.correo == patient.correo;
+
         if (sameId || sameName || sameLastName || samePhoneNumber || sameEmail) {
+        */
+        if (sameId) {
           isValid = false;
         }
       });
