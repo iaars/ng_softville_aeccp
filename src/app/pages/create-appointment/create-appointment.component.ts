@@ -68,16 +68,19 @@ export class CreateAppointmentComponent extends AccessInterface {
     date.setHours(parseInt(timeSplitted[0]), parseInt(timeSplitted[1]));
     let cantCitas = 0;
     const querySnapshotAppointment = await getDocs(
-      query(collection(this.firestore, 'citas'), where('fechaHora', '==', date.getTime()))
+      query(
+        collection(this.firestore, 'citas'),
+        where('fechaHora', '==', date.getTime()),
+        where('idProfesional', '==', this.form.get('professional')?.value)
+      )
     );
     querySnapshotAppointment.forEach((patient) => {
       cantCitas++;
     });
-    if(cantCitas > 0){
+    if (cantCitas > 0) {
       //si hay citas el mismo dia a la misma hora
       this.onError();
-    }
-    else{
+    } else {
       //se agrega la cita
       const cita: Cita = {
         fechaHora: date.getTime(),
@@ -94,16 +97,12 @@ export class CreateAppointmentComponent extends AccessInterface {
     Modal.showInfoModal(
       this.modalService,
       'No fue posible agendar la cita',
-      'El paciente ya tiene una cita en la fecha y hora seleccionadas.'
+      'El médico ya tiene una cita en la fecha y hora seleccionadas.'
     );
   }
 
-   onSuccess() {
-    Modal.showInfoModal(
-      this.modalService,
-      'Cita agendada',
-      'Se ha agendado la cita exitosamente.'
-    );
+  onSuccess() {
+    Modal.showInfoModal(this.modalService, 'Cita agendada', 'Se ha agendado la cita exitosamente.');
   }
 
   protected onInvalidData(): void {
