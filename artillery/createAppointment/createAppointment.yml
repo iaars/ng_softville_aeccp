@@ -1,0 +1,13 @@
+config:
+  target: 'http://localhost:4200/create-appointment'
+  phases:
+    - duration: 10
+      arrivalRate: 5
+      name: Create appointment
+  engines:
+    playwright: {}
+  processor: ../flows.js
+scenarios:
+  - name: 'Test Create appointment'
+    engine: playwright
+    flowFunction: 'testCreateAppointment'

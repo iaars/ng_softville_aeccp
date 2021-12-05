@@ -1,0 +1,13 @@
+config:
+  target: 'http://localhost:4200/home'
+  phases:
+    - duration: 10
+      arrivalRate: 5
+      name: Home
+  engines:
+    playwright: {}
+  processor: ../flows.js
+scenarios:
+  - name: 'Test Home'
+    engine: playwright
+    flowFunction: 'testHome'

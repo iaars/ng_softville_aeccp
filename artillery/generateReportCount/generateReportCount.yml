@@ -1,0 +1,13 @@
+config:
+  target: 'http://localhost:4200/generate-report-count'
+  phases:
+    - duration: 10
+      arrivalRate: 5
+      name: Generate report count
+  engines:
+    playwright: {}
+  processor: ../flows.js
+scenarios:
+  - name: 'Test Generate Report Count'
+    engine: playwright
+    flowFunction: 'testGenerateReportCount'
